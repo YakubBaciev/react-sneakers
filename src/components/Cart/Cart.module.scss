@@ -1,0 +1,95 @@
+.root{
+  margin: 0;
+height: 700px;
+  div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 30px;
+    h3{
+      opacity: 0.5;
+      cursor: pointer;
+      &:hover{
+        opacity: 1;
+      }
+    }
+  }
+  .cartScroll{
+    margin-left: 20px;
+    overflow: auto;
+    width: 900px;
+    height: 400px;
+    flex-wrap: wrap;
+  .cartItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 700px;
+    height: 90px;
+    border: 1px solid rgb(201, 188, 188);
+    border-radius: 20px;
+    margin-left: 130px;
+    margin-bottom: 20px;
+    .buttonDelete{
+       width: 80px;
+      height: 30px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      &:hover{
+        background-color: black;
+        color: white;
+      }
+
+    }
+    
+    img {
+      width: 90px;
+      height: 90px;
+      margin-left: 20px;
+    }
+    button{
+      margin-right: 20px;
+      cursor: pointer;
+
+    }
+  }
+}
+  .totalPrice{
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    .count{
+     margin-left: 50px;
+    }
+  }
+  .button{
+    display: flex;
+    justify-content: space-between;
+  
+    .button1{
+      margin-left: 130px;
+      width: 200px;
+      height: 40px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      &:hover{
+        background-color: black;
+        color: white;
+      }
+    }
+    .button2{
+      margin-right: 120px;
+       width: 200px;
+      height: 40px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      &:hover{
+        background-color: black;
+        color: white;
+      }
+    }
+  }
+}

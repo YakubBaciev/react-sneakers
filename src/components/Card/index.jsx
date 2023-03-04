@@ -1,21 +1,27 @@
 import React from "react";
 import styles from "./Card.module.scss";
-import { CartContext } from "../../App";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setCartItem } from "../../redux/slices/cartSlice";
 
 const Card = ({ id, imageUrl, tittle, price }) => {
-  const { cartItem, items, setCartItem } = React.useContext(CartContext);
+  const items = useSelector((state) => state.cartSlice.items);
+
+  const dispatch = useDispatch();
 
   const [click, setClick] = React.useState(true);
+
   const onClickButton1 = (id) => {
     const findItem = items.find((obj) => obj.id === id);
     axios.post("https://639c95a242e3ad6927364e55.mockapi.io/cart", findItem);
+    dispatch(setCartItem(findItem));
     setClick(!click);
   };
-  console.log(cartItem);
+
   const onClickButton2 = () => {
     setClick(!click);
   };
+
   return (
     <div className={styles.root}>
       <img width={133} height={112} src={imageUrl} alt="" />

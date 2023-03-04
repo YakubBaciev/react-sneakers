@@ -1,0 +1,28 @@
+.root{
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  h1{
+    height: 50px;
+  };
+
+  img{
+    width: 800px;
+    height: 400px;
+    margin-right: 20px;
+
+  };
+  button{
+      margin-right: 630px;
+      margin-top: 50px;
+       width: 200px;
+      height: 40px;
+      border-radius: 10px;
+      font-size: 18px;
+      cursor: pointer;
+      &:hover{
+        background-color: black;
+        color: white;
+      }
+    };
+}

@@ -1,12 +1,17 @@
 import React from "react";
 import styles from "./Header.module.scss";
-import { CartContext } from "../../App";
+import { useSelector, useDispatch } from "react-redux";
+import { setOpenCart } from "../../redux/slices/cartSlice";
 
 const Header = () => {
-  const { openCart, setOpenCart } = React.useContext(CartContext);
+  const dispatch = useDispatch();
+
+  const openCart = useSelector((state) => state.cartSlice.openCart);
+
   const onClickCart = () => {
-    setOpenCart(!openCart);
+    dispatch(setOpenCart(!openCart));
   };
+
   return (
     <header className={styles.root}>
       <div className={styles.headerLeft}>

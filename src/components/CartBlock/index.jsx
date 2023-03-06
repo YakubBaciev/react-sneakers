@@ -1,19 +1,12 @@
 import React from "react";
-import styles from "./Cart.module.scss";
+import styles from "./CartBlock.module.scss";
 import CartEmpty from "../CartEmpty";
 import CartItems from "../CartItems";
-import { setOpenCart } from "../../redux/slices/cartSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-const Cart = () => {
-  const dispatch = useDispatch();
-
-  const openCart = useSelector((state) => state.cartSlice.openCart);
+const CartBlock = () => {
   const cartItem = useSelector((state) => state.cartSlice.cartItem);
-
-  const onClickCart = () => {
-    dispatch(setOpenCart(!openCart));
-  };
 
   return (
     <div className={styles.root}>
@@ -39,9 +32,9 @@ const Cart = () => {
             </div>
           </div>
           <div className={styles.button}>
-            <button onClick={onClickCart} className={styles.button1}>
-              Вернуться назад
-            </button>
+            <Link to="/">
+              <button className={styles.button1}>Вернуться назад</button>
+            </Link>
             <button className={styles.button2}>Оплатить сейчас</button>
           </div>
         </>
@@ -52,4 +45,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default CartBlock;

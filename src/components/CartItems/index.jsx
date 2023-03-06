@@ -1,14 +1,13 @@
 import styles from "./CartItems.module.scss";
-import { useDispatch } from "react-redux";
-import { setCartItem } from "../../redux/slices/cartSlice";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { onClickDelete } from "../../redux/slices/cartSlice";
 
 const CartItems = ({ id, imageUrl, price, tittle }) => {
+  const cartItem = useSelector((state) => state.cartSlice.cartItem);
   const dispatch = useDispatch();
 
-  const onClickDelet = (id) => {
-    dispatch(setCartItem((prev) => prev.filter((obj) => obj.id !== id)));
-    axios.delete(`https://639c95a242e3ad6927364e55.mockapi.io/cart/${id}`);
+  const onClickRemove = (id) => {
+    dispatch(onClickDelete(id));
   };
 
   return (
@@ -16,7 +15,7 @@ const CartItems = ({ id, imageUrl, price, tittle }) => {
       <img src={imageUrl} alt="sneakers" />
       <p>{tittle}</p>
       <b>{price} р.</b>
-      <button onClick={() => onClickDelet(id)} className={styles.buttonDelete}>
+      <button onClick={() => onClickRemove(id)} className={styles.buttonDelete}>
         Delete
       </button>
     </div>

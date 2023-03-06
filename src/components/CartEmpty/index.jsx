@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./CartEmpty.module.scss";
+import { Link } from "react-router-dom";
 
 const CartEmpty = () => {
   return (
@@ -9,9 +10,9 @@ const CartEmpty = () => {
         src="https://www.vinsolutions.com/wp-content/uploads/sites/2/vinsolutions/media/Vin-Images/news-blog/Empty_Shopping_Cart_blog.jpg"
         alt="cartEmpty"
       />
-      <a href="/">
+      <Link to="/">
         <button>Вернуться назад</button>
-      </a>
+      </Link>
     </div>
   );
 };

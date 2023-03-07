@@ -1,13 +1,12 @@
 import React from "react";
 import styles from "./Header.module.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { setOpenCart } from "../../redux/slices/cartSlice";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  const dispatch = useDispatch();
+  const { totalPrice } = useSelector((state) => state.cartSlice);
 
-  const openCart = useSelector((state) => state.cartSlice.openCart);
+  // const totalPrice = cartItem.reduce((sum, obj) => obj.price + sum, 0);
 
   return (
     <header className={styles.root}>
@@ -36,7 +35,7 @@ const Header = () => {
               alt="cart"
             />
           </Link>
-          <span>12 999 p.</span>
+          <span>{totalPrice} p.</span>
         </li>
         <li>
           <img

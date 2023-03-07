@@ -11,7 +11,7 @@ const CartItems = ({ id, imageUrl, price, tittle }) => {
   };
 
   return (
-    <div className={styles.root} key={id}>
+    <div className={styles.root}>
       <img src={imageUrl} alt="sneakers" />
       <p>{tittle}</p>
       <b>{price} р.</b>

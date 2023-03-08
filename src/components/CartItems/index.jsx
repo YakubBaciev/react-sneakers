@@ -1,6 +1,6 @@
 import styles from "./CartItems.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { onClickDelete } from "../../redux/slices/cartSlice";
+import { onClickDelete, setCartItem } from "../../redux/slices/cartSlice";
 
 const CartItems = ({ id, imageUrl, price, tittle }) => {
   const cartItem = useSelector((state) => state.cartSlice.cartItem);

@@ -2,11 +2,17 @@ import React from "react";
 import styles from "./CartBlock.module.scss";
 import CartEmpty from "../CartEmpty";
 import CartItems from "../CartItems";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setClearCart } from "../../redux/slices/cartSlice";
 
 const CartBlock = () => {
-  const cartItem = useSelector((state) => state.cartSlice.cartItem);
+  const dispatch = useDispatch();
+  const { cartItem, totalPrice } = useSelector((state) => state.cartSlice);
+
+  const onClickClear = () => {
+    dispatch(setClearCart());
+  };
 
   return (
     <div className={styles.root}>
@@ -14,7 +20,7 @@ const CartBlock = () => {
         <>
           <div>
             <h1>Корзина</h1>
-            <h3>Очистить корзину</h3>
+            <h3 onClick={onClickClear}>Очистить корзину</h3>
           </div>
           <div className={styles.cartScroll}>
             {cartItem.map((item) => (
@@ -24,11 +30,11 @@ const CartBlock = () => {
           <div className={styles.totalPrice}>
             <div className={styles.count}>
               <p>Количество: </p>
-              <b> 10 шт</b>
+              <b>{cartItem.length} шт</b>
             </div>
             <div>
               <p>Итоговая сумма: </p>
-              <b> 5000 р.</b>
+              <b>{totalPrice} р.</b>
             </div>
           </div>
           <div className={styles.button}>

@@ -3,9 +3,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchSneakers = createAsyncThunk(
   "cart/fetchSneakersStatus",
-  async () => {
+  async ({ searchValue }) => {
     const { data } = await axios.get(
-      "https://639c95a242e3ad6927364e55.mockapi.io/sneakers"
+      `https://639c95a242e3ad6927364e55.mockapi.io/sneakers?${
+        searchValue ? `search=${searchValue}` : ""
+      }`
     );
     return data;
   }

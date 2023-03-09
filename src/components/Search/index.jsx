@@ -2,17 +2,30 @@ import React from "react";
 import styles from "./Search.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchValue } from "../../redux/slices/searchSlice";
+import { debounce } from "lodash";
 
 const Search = () => {
-  const searchValue = useSelector((state) => state.searchSlice.searchValue);
-
+  const [value, setValue] = React.useState("");
   const dispatch = useDispatch();
 
   const inputRef = React.useRef("");
 
   const onClickClear = () => {
     dispatch(setSearchValue(""));
+    setValue("");
     inputRef.current.focus();
+  };
+
+  const updateSearchValue = React.useCallback(
+    debounce((str) => {
+      dispatch(setSearchValue(str));
+    }, 500),
+    []
+  );
+
+  const onChangeValue = (e) => {
+    setValue(e.target.value);
+    updateSearchValue(e.target.value);
   };
 
   return (
@@ -20,8 +33,8 @@ const Search = () => {
       <img className={styles.img1} src="/img/search.svg" alt="search" />
       <input
         ref={inputRef}
-        value={searchValue}
-        onChange={(e) => dispatch(setSearchValue(e.target.value))}
+        value={value}
+        onChange={onChangeValue}
         placeholder="Поиск..."
       ></input>
       <img

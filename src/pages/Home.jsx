@@ -1,23 +1,23 @@
 import React from "react";
 import Card from "../components/Card";
-import Cart from "../components/CartBlock";
+import Skeleton from "../components/Card/Skeleton";
 import Search from "../components/Search";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchSneakers } from "../redux/slices/cartSlice";
 
 const Home = () => {
-  const { items } = useSelector((state) => state.cartSlice);
+  const { items, status } = useSelector((state) => state.cartSlice);
   const searchValue = useSelector((state) => state.searchSlice.searchValue);
 
   const dispatch = useDispatch();
 
   const getSneakers = () => {
-    dispatch(fetchSneakers());
+    dispatch(fetchSneakers({ searchValue }));
   };
 
   React.useEffect(() => {
     getSneakers();
-  }, []);
+  }, [searchValue]);
   return (
     <>
       <div className="tittle">
@@ -25,13 +25,16 @@ const Home = () => {
         <Search />
       </div>
       <div className="conteiner">
-        {items
-          .filter((obj) =>
-            obj.tittle.toUpperCase().includes(searchValue.toUpperCase())
-          )
-          .map((obj) => (
-            <Card {...obj} key={obj.id} />
-          ))}
+        {status === "error" ? (
+          <div>
+            <h1>Произошла ошибка</h1>
+            <h1>Повторите попытку позже</h1>
+          </div>
+        ) : status === "loading" ? (
+          [...Array(8)].map((_, index) => <Skeleton key={index} />)
+        ) : (
+          items.map((obj) => <Card {...obj} key={obj.id} />)
+        )}
       </div>
     </>
   );

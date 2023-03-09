@@ -23,7 +23,7 @@ const Search = () => {
     []
   );
 
-  const onChangeValue = (e) => {
+  const onChangeInput = (e) => {
     setValue(e.target.value);
     updateSearchValue(e.target.value);
   };
@@ -34,7 +34,7 @@ const Search = () => {
       <input
         ref={inputRef}
         value={value}
-        onChange={onChangeValue}
+        onChange={onChangeInput}
         placeholder="Поиск..."
       ></input>
       <img
